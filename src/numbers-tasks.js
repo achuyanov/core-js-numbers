@@ -260,18 +260,12 @@ function getCube(n) {
  *   10 => 55
  */
 function getFibonacciNumber(id) {
-  if (id === 0) return 0;
-  if (id === 1) return 1;
-
-  let prev = 0;
-  let cur = 1;
-  let next = 1;
-
-  for (let i = 2; i <= id; i += 1) {
-    [next, prev, cur] = [prev + cur, cur, next];
+  let sum = id;
+  if (sum <= 1) {
+    return sum;
   }
-
-  return cur;
+  sum = getFibonacciNumber(sum - 1) + getFibonacciNumber(sum - 2);
+  return sum;
 }
 
 /**
@@ -314,7 +308,7 @@ function getSumToN(n) {
 function getSumOfDigits(n) {
   return String(Math.abs(n))
     .split('')
-    .reduce((a, c) => a + c, 0);
+    .reduce((a, c) => a + +c, 0);
 }
 
 /**
@@ -571,8 +565,8 @@ function getIntegerPartNumber(n) {
  * 1, 2, 3       => 6
  * 0.1, 0.2, 0.3 => 0.6
  */
-function getSumOfNumbers(/* x1, x2, x3 */) {
-  return arguments.reduce((a, c) => a + c, 0);
+function getSumOfNumbers(x1, x2, x3) {
+  return (x1 + x2 + x3).toFixed(1);
 }
 
 /**
@@ -635,7 +629,7 @@ function getHypotenuse(a, b) {
  * 15 => 8
  */
 function getCountOfOddNumbers(n) {
-  return Math.floor((n + 1) / 2);
+  return Math.ceil(Math.abs(n) / 2);
 }
 
 module.exports = {
